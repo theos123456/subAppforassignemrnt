@@ -1,0 +1,67 @@
+<body class="body1">
+
+<%= form_with(model: assignment, local: true) do |form| %>
+  <% if assignment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
+
+      <ul>
+      <% assignment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+
+
+<center><fieldset style="width:60%;background:#e9ecef;position:relative;top:-40px;"><legend>New assignement</legend>
+ <div class="form-group row">
+    <%= form.label :description ,class:'col-2 col-form-label' %>
+            <div class="col-9" >
+
+    <%= form.text_area :description ,class:'form-control' %>
+  </div>
+</div>
+ <div class="form-group row">
+    <%= form.label :title ,class:'col-2 col-form-label' %>
+        <div class="col-9">
+
+    <%= form.text_field :title ,class:'form-control' %>
+  </div>
+  </div>
+
+ <div class="form-group row">
+    <%= form.label :content ,class:'col-2 col-form-label' %>
+    <div class="col-9">
+    <%= form.text_field :content ,class:'form-control' %>
+  </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :deadline ,class:'col-2 col-form-label' %>
+      <div class="col-9">
+
+    <%= form.date_field :deadline ,class:'form-control' %>
+  </div>
+</div>
+  <div class="form-group row">
+  <%= form.label :level_id ,class:'col-2 col-form-label' %>
+        <div class="col-9">
+
+ 
+
+  <%= form.select :level_id, Level.pluck(:name, :id) ,class:'form-control' %> 
+  
+  </div>
+  </div>
+
+  
+
+        <div class="col-10">
+    <%= form.submit class:'btn btn-primary'%>
+  </div>
+<% end %>
+</fieldset>
+</center>
+</body>

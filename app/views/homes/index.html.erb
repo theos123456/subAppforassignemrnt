@@ -1,0 +1,145 @@
+
+<% if current_user  %>
+
+
+<% if current_user && current_user.admin %>
+
+<h5> assignments </h5>
+
+<%= link_to 'search', new_search_path%>
+<div class=" md-form active-pink-3 active-pink-4 mb-4">
+
+ <%= form_tag root_path, :method => 'get', class:'form-inline'  do %>
+<%= text_field_tag :search, params[:search], class:'form-control' %>
+<%= submit_tag 'search', class:'btn btn-primary'%>
+
+</div>
+
+<%end%>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+     
+      <th>Title</th>
+      
+      <th>Deadline</th>
+      <th>Level</th>
+      <th>submitions</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assignments.each do |assignment| %>
+      <tr>
+     
+        
+        <td> <%= link_to  assignment.title, {:action => 'show', :id =>assignment.id} %> </td>
+        
+        <td><%= assignment.deadline %></td>
+        <td><%= assignment.level.name %></td>
+      
+
+    <td><%= link_to :action => "show_asigs",  :id => assignment.id, class: " h" do %>
+    <i class="glyphicon glyphicon-eye-open text-dark"></i> 
+    <% end %>
+     </td>   
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+
+<% elsif current_user && !current_user.admin  %>
+
+
+
+
+
+<h1>Submits</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <th> time of submition</th>
+      <th>Link</th>
+      <th>User</th>
+      <th>Assignment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @submits.each do |submit| %>
+      <tr>
+      <td><%= submit.created_at %></td>
+        <td><%= submit.link %></td>
+        <td><%= submit.user.email %></td>
+        <td><%= submit.assignment.title %></td>
+        
+        <td>
+        <%if submit.assignment.deadline > DateTime.now  %>
+        
+       
+
+
+
+          <%= link_to submit, method: :delete, data: { confirm: 'Are you sure?' }, class: " h" do %>
+    <i class="glyphicon glyphicon-trash text-danger"></i> 
+<% end %>
+        <% else %>
+       <i class=" glyphicon glyphicon-off text-danger"></i>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+<% end %>
+
+<% end %>
+
+
+<% if !current_user%>
+
+
+
+<nav class="navbar sticky-top navbar-light bg-dark" style="position:absolute;top:0px;left:0px;width:100%;">
+  <a class="navbar-brand" href="#" style="color:white;">Online assignement submission system</a>
+</nav>
+
+
+
+
+<div class="container-full-bg">
+<div class="jumbotron">
+  <center><p class="lead hd1">Univerisity of rwanda college of science and technology</p>
+  <p class="lead hd1">school of ICT</p>
+  <hr class="my-4">
+  
+  <p class="lead" style="position:relative;top:150px;">
+    
+    <%=link_to 'Sign In', new_user_session_path, class:'btn-lg btn-outline-primary' %>
+    
+<!--class:'btn btn-info btn-lg'---->
+    <%=link_to 'Sign Up', new_user_registration_path, class:'btn-lg btn-primary' %></center>
+  </p>
+</div>
+</div>
+
+
+</div>
+
+
+<% end %>

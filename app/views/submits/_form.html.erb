@@ -1,0 +1,53 @@
+
+
+<body class="body1">
+
+<%= form_with(model: submit, local: true) do |form| %>
+  <% if submit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(submit.errors.count, "error") %> prohibited this submit from being saved:</h2>
+
+      <ul>
+      <% submit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+
+  
+<center><fieldset style="width:60%;background:#e9ecef;position:relative;top:-40px;"><legend>///////</legend>
+
+ <div class="form-group row">
+    <%= form.label :assignment_id ,class:'col-2 col-form-label' %>
+                <div class="col-9" >
+
+    <%= form.number_field :assignment_id, :value => @asig_id, readonly: true ,class:'form-control' %>
+  </div>
+  </div>
+ <div class="form-group row">
+    <%= form.label :assignment_title ,class:'col-2 col-form-label' %>
+                    <div class="col-9" >
+
+    <%= form.text_field :title, :value => @title, readonly: true ,class:'form-control' %>
+  </div>
+</div>
+ <div class="form-group row">
+    <%= form.label :link ,class:'col-2 col-form-label'%>
+                        <div class="col-9" >
+
+    <%= form.url_field :link ,class:'form-control' %>
+  </div>
+  </div>
+
+  
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</fieldset>
+</center>
+</body>

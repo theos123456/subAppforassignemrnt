@@ -1,0 +1,65 @@
+
+<% if current_user%>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  
+
+<img src="/img/ur.png" style="height:15vh;">
+     
+
+   <li class="nav-item dropdown navbar-brand">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <% if current_user.admin%>
+          
+
+           Admin 
+
+          <% else %>
+
+          <%= current_user.first_name%>user
+
+          <%end%>
+        </a>
+        
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
+
+          <%=link_to 'logout', destroy_user_session_path, method: :delete, class:'dropdown-item'%>
+
+          <%=link_to 'Setting', edit_user_registration_path,  class:'dropdown-item'%>
+ <% if current_user.admin%>
+    <i class="glyphicon glyphicon-euro"></i> <%= link_to 'Dashboard', admin_root_path, class: "btn btn-default"  %>
+         <%end%> 
+        </div>
+      </li>
+
+      
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+
+     <li class="nav-item active">
+<%= link_to 'Home', root_path, class:'nav-link' %>
+     </li>
+      <li class="nav-item active">
+        <% if current_user.admin %>
+      <%= link_to 'New Assignment', new_assignment_path, class:'nav-link' %>
+
+      <% else %>
+    <%= link_to 'My Assignment', assignments_path, class:'nav-link' %>
+
+      <% end %>
+      </li>
+      
+    </ul>
+   
+  </div>
+</nav>
+
+
+<% end %>

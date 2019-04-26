@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  level_id: 1
+  min_date: 2019-04-23
+  max_date: 2019-04-23
+  keywords: MyString
+
+two:
+  title: MyString
+  level_id: 1
+  min_date: 2019-04-23
+  max_date: 2019-04-23
+  keywords: MyString

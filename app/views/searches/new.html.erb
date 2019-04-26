@@ -1,0 +1,34 @@
+<%= form_for @search do  |f|%>
+
+<div class="field">
+<%= f.label  :keywords  %><br />
+
+
+<%=f.text_field  :keywords%>
+</div>
+<div class="field">
+<%= f.label  :title  %><br />
+<%=f.text_field  :title%>
+</div>
+
+
+
+
+
+<div class="field">
+<%= f.label  :level_id %><br />
+
+
+<%=f.collection_select :level_id,  Level.order(:name), :id, :name, include_blank: true  %>
+</div>
+
+
+<div class="field">
+<%= f.label :min_date, "date range" %>
+
+<%=f.date_field :min_date %><br />
+<%=f.date_field :max_date %>
+</div>
+
+<%= f.submit "search"%>
+<%end %>

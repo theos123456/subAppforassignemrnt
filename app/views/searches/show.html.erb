@@ -1,0 +1,19 @@
+
+p id="notice"><%= notice %></p>
+
+<p>
+
+
+<%@search.find_assignments.each do |c|%>
+ 
+
+<p>
+  <strong>Title:</strong>
+  <%= c.title %>
+</p>
+<td><%= link_to homes_show_asigs_path,  :id => c.level.assignments.ids, class: " h" do %>
+    <i class="glyphicon glyphicon-eye-open text-dark"></i> 
+    <% end %>
+<%end%>
+
+<%= link_to 'Back', root_path %>

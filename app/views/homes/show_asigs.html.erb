@@ -1,0 +1,50 @@
+<h5> ASSIGNMENT TITLE: <%= @assignment.title%> CLASS: <%= @assignment.level.name %></h5>
+
+<% if @assignment.submits.count > 0  %>
+<table class="table table-striped">
+<tr>
+<th>
+ NAMES
+</th>
+
+<th>
+REG
+</th>
+<th>
+SUB TIME
+</th>
+
+<th>
+LINK
+</th>
+
+</tr>
+<% @assignment.submits.each do |c| %>
+<tr>
+
+
+<td>
+<%= c.user.first_name %> <%= c.user.last_name %>
+</td>
+
+<td>
+<%= c.user.reg %>
+</td>
+
+<td>
+<%= c.created_at %>
+</td>
+
+<td>
+<%= c.link %>
+</td>
+
+
+
+
+    <% end %>
+</table>
+<% else %>
+<h5> Sorry no current submitions!! </h5>
+<% end %>
+<%= link_to "back", root_path %>
